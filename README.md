@@ -1,4 +1,4 @@
-# Skyblock Counter
+# SkyCounter
 
 This is a mod for Minecraft 1.21.1 that counts the kills of a mob in Hypixel Skyblock, based on your bestiary.
 
@@ -6,9 +6,9 @@ This is a mod for Minecraft 1.21.1 that counts the kills of a mob in Hypixel Sky
 
 You need to add ur own API Key and UUID without dashes.
 
-/hyCounter setAPI {API_KEY}
+/skyCounter setAPI {API_KEY}
 
-/hyCounter setUndashedUuid {UUID}
+/skyCounter setUndashedUuid {UUID}
 
 ---
 

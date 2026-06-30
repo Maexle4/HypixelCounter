@@ -1,4 +1,4 @@
-package de.maexle.hypixelcounter.mixin;
+package de.maexle.skyblockcounter.mixin;
 
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;

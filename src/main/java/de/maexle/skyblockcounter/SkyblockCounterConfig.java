@@ -1,4 +1,4 @@
-package de.maexle.hypixelcounter;
+package de.maexle.skyblockcounter;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,9 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HypixelCounterConfig {
+public class SkyblockCounterConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static final File CONFIG_FILE = new File("config/hypixelcounter.json");
+    private static final File CONFIG_FILE = new File("config/skyblockcounter.json");
 
     private int hudX = 10;
     private int hudY = 10;
@@ -37,14 +37,14 @@ public class HypixelCounterConfig {
         }
     }
 
-    public static HypixelCounterConfig load() {
+    public static SkyblockCounterConfig load() {
         if (!CONFIG_FILE.exists()) {
-            return new HypixelCounterConfig();
+            return new SkyblockCounterConfig();
         }
         
         try (FileReader reader = new FileReader(CONFIG_FILE)) {
             JsonObject json = GSON.fromJson(reader, JsonObject.class);
-            HypixelCounterConfig config = new HypixelCounterConfig();
+            SkyblockCounterConfig config = new SkyblockCounterConfig();
             
             if (json.has("hudX")) config.hudX = json.get("hudX").getAsInt();
             if (json.has("hudY")) config.hudY = json.get("hudY").getAsInt();
@@ -73,7 +73,7 @@ public class HypixelCounterConfig {
             return config;
         } catch (IOException e) {
             e.printStackTrace();
-            return new HypixelCounterConfig();
+            return new SkyblockCounterConfig();
         }
     }
     

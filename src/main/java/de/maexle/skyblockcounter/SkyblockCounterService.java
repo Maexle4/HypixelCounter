@@ -1,4 +1,4 @@
-package de.maexle.hypixelcounter;
+package de.maexle.skyblockcounter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -22,9 +22,9 @@ import org.slf4j.LoggerFactory;
 import java.util.Map;
 import java.util.HashMap;
 
-public class HypixelCounterService {
+public class SkyblockCounterService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("hypixelcounter");
+    private static final Logger LOGGER = LoggerFactory.getLogger("skyblockcounter");
 
     private static volatile int currentKills = -1;
     private static volatile boolean guiVisible = false;
@@ -37,20 +37,20 @@ public class HypixelCounterService {
     private static volatile int startSessionKills = 0;
     private static volatile boolean showSessionKills = false;
 
-    private static final Identifier TREASURE_HOARDER_HEAD = Identifier.of("hypixelcounter", "textures/gui/sprites/treasure_hoarder_head.png");
-    private static final Identifier CORLEONE_HEAD = Identifier.of("hypixelcounter", "textures/gui/sprites/boss_corleone_head.png");
-    private static final Identifier ZEALOT_HEAD = Identifier.of("hypixelcounter", "textures/gui/sprites/zealot_enderman_head.png");
+    private static final Identifier TREASURE_HOARDER_HEAD = Identifier.of("skyblockcounter", "textures/gui/sprites/treasure_hoarder_head.png");
+    private static final Identifier CORLEONE_HEAD = Identifier.of("skyblockcounter", "textures/gui/sprites/boss_corleone_head.png");
+    private static final Identifier ZEALOT_HEAD = Identifier.of("skyblockcounter", "textures/gui/sprites/zealot_enderman_head.png");
     private static final int HEAD_SIZE = 16;
 
-    List<HypixelCounterConfig.MobEntry> entries = HypixelCounterService.getConfig().getMobEntries();
+    List<SkyblockCounterConfig.MobEntry> entries = SkyblockCounterService.getConfig().getMobEntries();
 
     private long lastUnloadTrigger = 0;
 
     private static final Map<String, Identifier> MOB_TEXTURES = new HashMap<>();
-    private static HypixelCounterConfig config;
+    private static SkyblockCounterConfig config;
 
     static {
-        config = HypixelCounterConfig.load();
+        config = SkyblockCounterConfig.load();
         hudX = config.getHudX();
         API_KEY = config.getAPI_KEY();
         undashedUuid = config.getundashedUuid();
@@ -59,16 +59,16 @@ public class HypixelCounterService {
         currentMobName = config.getLastMobName();
         
         // Build MOB_TEXTURES from config entries
-        for (HypixelCounterConfig.MobEntry entry : config.getMobEntries()) {
+        for (SkyblockCounterConfig.MobEntry entry : config.getMobEntries()) {
             if (entry.texture != null) {
-                MOB_TEXTURES.put(entry.id, Identifier.of("hypixelcounter", entry.texture));
+                MOB_TEXTURES.put(entry.id, Identifier.of("skyblockcounter", entry.texture));
             }
         }
     }
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor(runnable -> {
         Thread thread = new Thread(runnable);
         thread.setDaemon(true);
-        thread.setName("HypixelCounter-Timer");
+        thread.setName("SykblockCounter-Timer");
         return thread;
     });
 
@@ -124,12 +124,12 @@ public class HypixelCounterService {
 
     private void renderHud(DrawContext drawContext) {
         if (entries.isEmpty()) {
-            HypixelCounterConfig config = HypixelCounterService.getConfig();
-            config.mobEntries.add(new HypixelCounterConfig.MobEntry("treasure_hoarder_70", "Treasure Hoarder", "textures/gui/sprites/treasure_hoarder_head.png"));
-            config.mobEntries.add(new HypixelCounterConfig.MobEntry("team_treasurite_corleone_200", "Corleonite Boss", "textures/gui/sprites/boss_corleone_head.png"));
-            config.mobEntries.add(new HypixelCounterConfig.MobEntry("zealot_enderman_55", "Zealot", "textures/gui/sprites/zealot_enderman_head.png"));
+            SkyblockCounterConfig config = SkyblockCounterService.getConfig();
+            config.mobEntries.add(new SkyblockCounterConfig.MobEntry("treasure_hoarder_70", "Treasure Hoarder", "textures/gui/sprites/treasure_hoarder_head.png"));
+            config.mobEntries.add(new SkyblockCounterConfig.MobEntry("team_treasurite_corleone_200", "Corleonite Boss", "textures/gui/sprites/boss_corleone_head.png"));
+            config.mobEntries.add(new SkyblockCounterConfig.MobEntry("zealot_enderman_55", "Zealot", "textures/gui/sprites/zealot_enderman_head.png"));
             config.save();
-            HypixelCounterService.reloadMobTextures();
+            SkyblockCounterService.reloadMobTextures();
         }
 
         MinecraftClient mc = MinecraftClient.getInstance();
@@ -340,7 +340,7 @@ public class HypixelCounterService {
                 });
     }
 
-    public static HypixelCounterConfig getConfig() {
+    public static SkyblockCounterConfig getConfig() {
         return config;
     }
 
@@ -350,9 +350,9 @@ public class HypixelCounterService {
 
     public static void reloadMobTextures() {
         MOB_TEXTURES.clear();
-        for (HypixelCounterConfig.MobEntry entry : config.getMobEntries()) {
+        for (SkyblockCounterConfig.MobEntry entry : config.getMobEntries()) {
             if (entry.texture != null) {
-                MOB_TEXTURES.put(entry.id, Identifier.of("hypixelcounter", entry.texture));
+                MOB_TEXTURES.put(entry.id, Identifier.of("skyblockcounter", entry.texture));
             }
         }
         LOGGER.info("Mob-Textures neu geladen: " + MOB_TEXTURES.size() + " Mobs");

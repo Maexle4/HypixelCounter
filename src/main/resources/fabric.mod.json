@@ -1,32 +1,32 @@
 {
 	"schemaVersion": 1,
-	"id": "hypixelcounter",
+	"id": "skyblockcounter",
 	"version": "${version}",
-	"name": "Hypixel Counter",
+	"name": "SkyCounter",
 	"description": "A counter for Hypixel Skyblock by Mäxle.",
 	"authors": [
 		"Mäxle"
 	],
 	"contact": {
 		"homepage": "https://www.youtube.com/@maexle14",
-		"sources": "https://github.com/Maexle4/hypixelcounter"
+		"sources": "https://github.com/Maexle4/skycounter"
 	},
 	"license": "MIT",
-	"icon": "assets/hypixelcounter/icon.png",
+	"icon": "assets/skyblockcounter/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"de.maexle.hypixelcounter.HypixelCounter"
+			"de.maexle.skyblockcounter.SkyblockCounter"
 		],
 		"fabric-datagen": [
-			"de.maexle.hypixelcounter.HypixelCounterDataGenerator"
+			"de.maexle.skyblockcounter.SkyblockCounterDataGenerator"
 		],
 		"client":  [
-			"de.maexle.hypixelcounter.HypixelCounterClient"
+			"de.maexle.skyblockcounter.SkyblockCounterClient"
 		]
 	},
 	"mixins": [
-		"hypixelcounter.mixins.json"
+		"skyblockcounter.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.19.3",
