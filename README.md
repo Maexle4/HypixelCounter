@@ -1,9 +1,16 @@
-# Hypixel Counter
+# Skyblock Counter
+
+This is a mod for Minecraft 1.21.1 that counts the kills of a mob in Hypixel Skyblock, based on your bestiary.
 
 ## Setup
 
-For setup instructions, please see the [Fabric Documentation page](https://docs.fabricmc.net/develop/getting-started/creating-a-project#setting-up) related to the IDE that you are using.
+You need to add ur own API Key and UUID without dashes.
 
-## License
+/hyCounter setAPI {API_KEY}
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+/hyCounter setUndashedUuid {UUID}
+
+---
+
+
+I have nothing to do with the Hypixel Name or Trademark of Hypixel if there is one.
